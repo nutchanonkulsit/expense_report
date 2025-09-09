@@ -76,8 +76,10 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @SuppressWarnings("CallToPrintStackTrace")
     public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
         try {
+
             String email = request.get("email");
             String password = request.get("password");
 
@@ -97,6 +99,7 @@ public class AuthController {
             return ResponseEntity.ok(Map.of(
                     "token", token,
                     "refreshToken", refreshToken,
+                    "tokenType", "Bearer",
                     "email", user.getEmail(),
                     "name", user.getName()));
 

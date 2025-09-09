@@ -1,5 +1,5 @@
-// package com.spring.expense_report.config;
+package com.spring.expense_report.config;
 
-// public class SecurityConfig {
+public class SecurityConfig {
     
-// }
+}
