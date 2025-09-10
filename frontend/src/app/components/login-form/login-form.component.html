@@ -1,0 +1,74 @@
+<div class="login-form rounded-2xl p-8 shadow-xl">
+  <div class="form-header text-center mb-8">
+    <h1 class="form-title text-3xl font-bold mb-2">Welcome Back</h1>
+    <p class="form-subtitle">Sign in to your account</p>
+  </div>
+
+  <form #login="ngForm" (ngSubmit)="onSubmit()">
+    <!-- Username Field -->
+    <div class="form-group">
+      <label for="username" class="form-label">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        class="form-input placeholder-gray-400"
+        [(ngModel)]="username"
+        required
+        #usernameField="ngModel"
+        placeholder="Enter your username"
+      />
+      <span
+        class="error-message"
+        *ngIf="usernameField.invalid && usernameField.touched"
+      >
+        Username is required
+      </span>
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group">
+      <label for="password" class="form-label">Password</label>
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        id="password"
+        name="password"
+        class="form-input placeholder-gray-400"
+        [(ngModel)]="password"
+        required
+        #passwordField="ngModel"
+        placeholder="Enter your password"
+      />
+      <span
+        class="absolute right-3 top-10 cursor-pointer text-gray-500"
+        (click)="togglePassword()"
+      >
+        <ng-container *ngIf="showPassword; else hideIcon"> 🙉 </ng-container>
+        <ng-template #hideIcon> 🙈 </ng-template>
+      </span>
+      <span
+        class="error-message"
+        *ngIf="passwordField.invalid && passwordField.touched"
+      >
+        Password is required
+      </span>
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="submit-button"
+      [disabled]="!login.form.valid"
+      [class.loading]="isLoading"
+    >
+      <span *ngIf="!isLoading">Sign In</span>
+      <span *ngIf="isLoading">Signing in...</span>
+    </button>
+  </form>
+  <span>
+    Don't have an account?
+    <a routerLink="/register" class="text-blue-500 hover:underline"
+      >Register here</a
+    >
+  </span>
+</div>

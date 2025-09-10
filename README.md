@@ -18,8 +18,8 @@ This project allows users to track their income and expenses, view reports, and 
 ## 🛠 Tech Stack
 **Frontend:** Angular, TypeScript, Bootstrap/Tailwind, Chart.js  
 **Backend:** Spring Boot, Spring Data JPA, Spring Security, MySQL  
-**Deployment:** Docker, Render (Backend), Netlify (Frontend)  
+<!-- **Deployment:** Docker, Render (Backend), Vercel (Frontend)   -->
 
----
+<!-- --- -->
 
-## 📂 Project Structure
+<!-- ## 📂 Project Structure -->
