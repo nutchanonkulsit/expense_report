@@ -9,16 +9,25 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
-    // Implement login logic here
     return this.http.post(`${environment.apiUrl}/auth/login`, {
       email,
       password,
     });
   }
 
-  logout(): void {
-    // Implement logout logic here
+  register(name: string, email: string, password: string, role: string) {
+    return this.http.post(`${environment.apiUrl}/auth/register`, {
+      name,
+      email,
+      password,
+      role,
+    });
   }
+
+  logout(): void {
+    return localStorage.removeItem('token');
+  }
+
 
   isAuthenticated(): boolean {
     // Implement authentication check logic here

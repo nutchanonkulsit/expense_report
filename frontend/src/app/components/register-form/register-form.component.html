@@ -6,46 +6,109 @@
 
   <form #register="ngForm" (ngSubmit)="onSubmit()">
     <!-- Username Field -->
-    <div class="form-group">
-      <label for="username" class="form-label">Username</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        class="form-input placeholder-gray-400"
-        [(ngModel)]="username"
-        required
-        #usernameField="ngModel"
-        placeholder="Choose a username"
-      />
-      <span
-        class="error-message"
-        *ngIf="usernameField.invalid && usernameField.touched"
+    <div class="grid grid-cols-12 gap-4">
+      <div
+        class="form-group col-span-12 lg:col-span-6 md:col-span-6 sm:col-span-12"
       >
-        Username is required
-      </span>
-    </div>
+        <label for="Name" class="form-label">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-input placeholder-gray-400"
+          [(ngModel)]="name"
+          required
+          #nameField="ngModel"
+          placeholder="Choose a name"
+        />
+        <span
+          class="error-message"
+          *ngIf="nameField.invalid && nameField.touched"
+        >
+          Name is required
+        </span>
+      </div>
 
-    <!-- Email Field -->
-    <div class="form-group">
-      <label for="email" class="form-label">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        class="form-input placeholder-gray-400"
-        [(ngModel)]="email"
-        required
-        email
-        #emailField="ngModel"
-        placeholder="Enter your email"
-      />
-      <span
-        class="error-message"
-        *ngIf="emailField.invalid && emailField.touched"
+      <!-- Email Field -->
+      <div
+        class="form-group col-span-12 lg:col-span-6 md:col-span-6 sm:col-span-12"
       >
-        Valid email is required
-      </span>
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-input placeholder-gray-400"
+          [(ngModel)]="email"
+          required
+          email
+          #emailField="ngModel"
+          placeholder="Enter your email"
+        />
+        <span
+          class="error-message"
+          *ngIf="emailField.invalid && emailField.touched"
+        >
+          Valid email is required
+        </span>
+      </div>
+      <div class="form-group col-span-12">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-input placeholder-gray-400"
+          [(ngModel)]="password"
+          required
+          #passwordField="ngModel"
+          placeholder="Choose a password"
+        />
+        <span
+          class="error-message"
+          *ngIf="passwordField.invalid && passwordField.touched"
+        >
+          Password is required
+        </span>
+      </div>
+      <div class="form-group col-span-12">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          class="form-input placeholder-gray-400"
+          [(ngModel)]="confirmPassword"
+          required
+          #confirmPasswordField="ngModel"
+          placeholder="Re-enter your password"
+        />
+        <span
+          class="error-message"
+          *ngIf="confirmPasswordField.invalid && confirmPasswordField.touched"
+        >
+          Confirmation password is required
+        </span>
+        <span
+          class="error-message"
+          *ngIf="confirmPasswordField.touched && !passwordsMatch"
+        >
+          Passwords do not match
+        </span>
+      </div>
+      <button
+        type="submit"
+        class="submit-button col-span-12 w-full py-4 px-6 text-md font-semibold text-white rounded-lg cursor-pointer relative overflow-hidden mt-2"
+        [disabled]="register.invalid"
+        [class.loading]="isLoading"
+      >
+        Register
+        <span *ngIf="isLoading">Registering...</span>
+      </button>
     </div>
   </form>
+  <span class="text-sm text-gray-600 mt-4 block text-center">
+    Already have an account?
+    <a href="/login" class="text-blue-500 hover:underline">Login here</a>
+  </span>
 </div>

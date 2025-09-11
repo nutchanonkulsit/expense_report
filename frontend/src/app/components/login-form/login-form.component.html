@@ -1,7 +1,7 @@
 <div class="login-form rounded-2xl p-8 shadow-xl">
   <div class="form-header text-center mb-8">
     <h1 class="form-title text-3xl font-bold mb-2">Welcome Back</h1>
-    <p class="form-subtitle">Sign in to your account</p>
+    <p class="form-subtitle text-md font-normal">Sign in to your account</p>
   </div>
 
   <form #login="ngForm" (ngSubmit)="onSubmit()">
@@ -46,6 +46,7 @@
         <ng-container *ngIf="showPassword; else hideIcon"> 🙉 </ng-container>
         <ng-template #hideIcon> 🙈 </ng-template>
       </span>
+
       <span
         class="error-message"
         *ngIf="passwordField.invalid && passwordField.touched"
@@ -57,7 +58,7 @@
     <!-- Submit Button -->
     <button
       type="submit"
-      class="submit-button"
+      class="submit-button w-full py-4 px-6 text-md font-semibold text-white rounded-lg cursor-pointer relative overflow-hidden mt-2"
       [disabled]="!login.form.valid"
       [class.loading]="isLoading"
     >
@@ -65,7 +66,7 @@
       <span *ngIf="isLoading">Signing in...</span>
     </button>
   </form>
-  <span>
+  <span class="text-sm text-gray-600 mt-4 block text-center">
     Don't have an account?
     <a routerLink="/register" class="text-blue-500 hover:underline"
       >Register here</a
