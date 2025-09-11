@@ -24,7 +24,15 @@ public class Role {
     private String name;
 
     @OneToMany(mappedBy = "role")
-    @JsonIgnoreProperties({"role"})
+    @JsonIgnoreProperties({ "role" })
     private Set<User> users = new HashSet<>();
+
+    public Role() {
+        super();
+    }
+
+    public Role(String name) {
+        this.name = name;
+    }
 
 }

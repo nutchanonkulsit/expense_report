@@ -13,7 +13,8 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // apply to all paths
-                        .allowedOrigins("http://localhost:4200") // your Angular app
+                        .allowedOrigins("http://localhost:4200",
+                                "https://expense-report-ecru.vercel.app") // your Angular app
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);

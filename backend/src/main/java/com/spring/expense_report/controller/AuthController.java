@@ -1,5 +1,6 @@
 package com.spring.expense_report.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.expense_report.entity.Role;
 import com.spring.expense_report.entity.User;
+import com.spring.expense_report.repository.RoleRepository;
 import com.spring.expense_report.repository.UserRepository;
 import com.spring.expense_report.util.JwtUtil;
 
@@ -26,6 +28,7 @@ public class AuthController {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -54,7 +57,17 @@ public class AuthController {
             user.setEmail(email);
             user.setPassword(hashedPassword);
             user.setName(name);
-            userRole.setId(role.equals("admin") ? 1L : 2L); // Assuming 1L for admin and 2L for user
+
+            // Fetch all roles and find the matching one
+            List<Role> availableRoles = roleRepository.findAll(); 
+
+            Role matchedRole = availableRoles.stream()
+                    .filter(r -> r.getName().equalsIgnoreCase(role))
+                    .findFirst()
+                    .orElseThrow(() -> new RuntimeException("Role not found: " + role));
+
+            userRole.setId(matchedRole.getId());
+            
             user.setRole(userRole);
 
             userRepository.save(user);
