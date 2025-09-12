@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,7 +60,7 @@ public class AuthController {
             user.setName(name);
 
             // Fetch all roles and find the matching one
-            List<Role> availableRoles = roleRepository.findAll(); 
+            List<Role> availableRoles = roleRepository.findAll();
 
             Role matchedRole = availableRoles.stream()
                     .filter(r -> r.getName().equalsIgnoreCase(role))
@@ -67,7 +68,7 @@ public class AuthController {
                     .orElseThrow(() -> new RuntimeException("Role not found: " + role));
 
             userRole.setId(matchedRole.getId());
-            
+
             user.setRole(userRole);
 
             userRepository.save(user);
@@ -148,6 +149,19 @@ public class AuthController {
         } catch (JwtException e) {
             return ResponseEntity.status(401).body(Map.of(
                     "error", "TOKEN_EXPIRED"));
+        }
+    }
+
+    @PostMapping("/validate-token")
+    public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.startsWith("Bearer ") ? authHeader.substring(7) : authHeader;
+
+        boolean isValid = jwtUtil.validateToken(token);
+
+        if (isValid) {
+            return ResponseEntity.ok().body("Token is valid");
+        } else {
+            return ResponseEntity.status(401).body("Invalid or expired token");
         }
     }
 
