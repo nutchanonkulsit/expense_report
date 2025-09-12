@@ -16,6 +16,9 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { RegisterComponent } from './pages/register/register.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NavBarComponent } from './layouts/nav-bar/nav-bar.component';
+import { NewExpenseComponent } from './pages/new-expense/new-expense.component';
+import { UserInfoComponent } from './pages/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     RegisterComponent,
     RegisterFormComponent,
     DashboardComponent,
+    NavBarComponent,
+    NewExpenseComponent,
+    UserInfoComponent,
   ],
   imports: [
     BrowserModule,

@@ -28,6 +28,21 @@ export class AuthService {
     return localStorage.removeItem('token');
   }
 
+  isTokenValid(): Promise<boolean> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return Promise.resolve(false);
+    }
+    return this.http
+      .post(`${environment.apiUrl}/auth/validate-token`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .toPromise()
+      .then((res) => (res === 200 ? true : false))
+      .catch(() => false);
+  }
 
   isAuthenticated(): boolean {
     // Implement authentication check logic here

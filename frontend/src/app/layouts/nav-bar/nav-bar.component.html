@@ -1,0 +1,73 @@
+<div class="flex min-h-screen">
+  <!-- Sidebar -->
+  <nav
+    class="xl:w-80 lg:w-70 md:w-60 sm:w-50 w-50 h-[calc(100vh-3rem)] rounded-2xl shadow-xl bg-white border-white fixed m-6 overflow-y-auto"
+  >
+    <div class="p-6">
+      <div class="flex items-center space-x-2 mb-6">
+        <div class="text-xl">💰</div>
+        <div
+          class="text-xl font-bold text-gray-800 bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent"
+        >
+          Expense Report
+        </div>
+      </div>
+      <ul class="grid gap-2">
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="bg-indigo-50 text-indigo-600 shadow-md"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="flex items-center px-4 py-3 rounded-lg transition-all duration-300 text-gray-600 hover:bg-gray-50 hover:text-indigo-600"
+          >
+            <span class="text-xl mr-3">📊</span>
+            <span class="font-medium">Dashboard</span>
+          </a>
+        </li>
+
+        <li>
+          <a
+            routerLink="/new-expense"
+            routerLinkActive="bg-indigo-50 text-indigo-600 shadow-md"
+            class="flex items-center px-4 py-3 rounded-lg transition-all duration-300 text-gray-600 hover:bg-gray-50 hover:text-indigo-600"
+          >
+            <span class="text-xl mr-3">📝</span>
+            <span class="font-medium">New Expense</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page content -->
+  <main class="flex-1 p-6 xl:ml-80 lg:ml-70 md:ml-60 sm:ml-50 ml-50 relative">
+    <!-- Fixed Header -->
+    <div
+      #header
+      class="fixed top-6 xl:left-92 lg:left-82 md:left-72 sm:left-62 left-62 right-6 glass-effect rounded-2xl p-6 shadow-lg bg-white z-10"
+    >
+      <div class="flex justify-between items-center">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-800">Dashboard</h2>
+          <p class="text-gray-600 mt-1">Welcome back, manage your expenses</p>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="text-right">
+            <div class="font-semibold text-gray-800">John Doe</div>
+            <div class="text-sm text-gray-600">Manager</div>
+          </div>
+          <div
+            class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg"
+          >
+            JD
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scrollable content -->
+    <div class="overflow-y-auto" [style.paddingTop.px]="headerHeight">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

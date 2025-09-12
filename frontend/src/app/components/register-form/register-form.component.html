@@ -16,7 +16,7 @@
           id="name"
           name="name"
           class="form-input placeholder-gray-400"
-          [(ngModel)]="name"
+          [(ngModel)]="user.name"
           required
           #nameField="ngModel"
           placeholder="Choose a name"
@@ -39,7 +39,7 @@
           id="email"
           name="email"
           class="form-input placeholder-gray-400"
-          [(ngModel)]="email"
+          [(ngModel)]="user.email"
           required
           email
           #emailField="ngModel"
@@ -59,7 +59,7 @@
           id="password"
           name="password"
           class="form-input placeholder-gray-400"
-          [(ngModel)]="password"
+          [(ngModel)]="user.password"
           required
           #passwordField="ngModel"
           placeholder="Choose a password"
@@ -78,7 +78,7 @@
           id="confirmPassword"
           name="confirmPassword"
           class="form-input placeholder-gray-400"
-          [(ngModel)]="confirmPassword"
+          [(ngModel)]="user.confirmPassword"
           required
           #confirmPasswordField="ngModel"
           placeholder="Re-enter your password"
