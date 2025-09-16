@@ -6,7 +6,9 @@ import {
 } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient, withFetch } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +21,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NavBarComponent } from './layouts/nav-bar/nav-bar.component';
 import { NewExpenseComponent } from './pages/new-expense/new-expense.component';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
+import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { DialogExpenseComponent } from './components/dialog-expense/dialog-expense.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +37,8 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
     NavBarComponent,
     NewExpenseComponent,
     UserInfoComponent,
+    DashboardCardComponent,
+    DialogExpenseComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,8 +46,17 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    MatDialogModule,
   ],
-  providers: [provideClientHydration(withEventReplay())],
+  providers: [
+    provideClientHydration(withEventReplay()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    provideHttpClient(), 
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
