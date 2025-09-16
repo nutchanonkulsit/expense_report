@@ -26,6 +26,8 @@ export class LoginBlockGuard implements CanActivate {
 
     return from(this.authService.isTokenValid(token)).pipe(
       map((isValid) => {
+        console.log('Token valid:', isValid);
+        
         if (isValid) {
           this.router.navigate(['/']);
           return false;
