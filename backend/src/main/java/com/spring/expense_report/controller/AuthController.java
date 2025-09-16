@@ -1,5 +1,6 @@
 package com.spring.expense_report.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -152,33 +153,33 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/validate-token")
-    public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String authHeader) {
-        String token = authHeader.startsWith("Bearer ") ? authHeader.substring(7) : authHeader;
-
-        boolean isValid = jwtUtil.validateToken(token);
-
-        if (isValid) {
-            return ResponseEntity.ok().body("Token is valid");
-        } else {
-            return ResponseEntity.status(401).body("Invalid or expired token");
-        }
-    }
-
     // @PostMapping("/validate-token")
-    // public ResponseEntity<Map<String, Object>> validateToken(@RequestHeader("Authorization") String authHeader) {
+    // public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String authHeader) {
     //     String token = authHeader.startsWith("Bearer ") ? authHeader.substring(7) : authHeader;
 
     //     boolean isValid = jwtUtil.validateToken(token);
 
-    //     Map<String, Object> body = new HashMap<>();
-    //     body.put("valid", isValid);
-
     //     if (isValid) {
-    //         return ResponseEntity.ok(body);
+    //         return ResponseEntity.ok().body("Token is valid");
     //     } else {
-    //         return ResponseEntity.status(401).body(body);
+    //         return ResponseEntity.status(401).body("Invalid or expired token");
     //     }
     // }
+
+    @PostMapping("/validate-token")
+    public ResponseEntity<Map<String, Object>> validateToken(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.startsWith("Bearer ") ? authHeader.substring(7) : authHeader;
+
+        boolean isValid = jwtUtil.validateToken(token);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("valid", isValid);
+
+        if (isValid) {
+            return ResponseEntity.ok(body);
+        } else {
+            return ResponseEntity.status(401).body(body);
+        }
+    }
 
 }
