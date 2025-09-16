@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,6 +11,7 @@ export class NavBarComponent {
   @ViewChild('header') headerRef!: ElementRef;
   headerHeight: number = 0;
 
+  constructor(private router: Router) {}
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.updateHeaderHeight();
@@ -23,7 +25,12 @@ export class NavBarComponent {
 
   updateHeaderHeight() {
     if (this.headerRef) {
-      this.headerHeight = this.headerRef.nativeElement.offsetHeight ;
+      this.headerHeight = this.headerRef.nativeElement.offsetHeight;
     }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }

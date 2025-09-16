@@ -1,8 +1,9 @@
 <div class="flex min-h-screen">
   <!-- Sidebar -->
   <nav
-    class="xl:w-80 lg:w-70 md:w-60 sm:w-50 w-50 h-[calc(100vh-3rem)] rounded-2xl shadow-xl bg-white border-white fixed m-6 overflow-y-auto"
+    class="xl:w-80 lg:w-70 md:w-60 sm:w-50 w-50 h-[calc(100vh-3rem)] rounded-2xl shadow-xl bg-white border-white fixed m-6 overflow-y-auto flex flex-col justify-between"
   >
+    <!-- Top section -->
     <div class="p-6">
       <div class="flex items-center space-x-2 mb-6">
         <div class="text-xl">💰</div>
@@ -12,6 +13,7 @@
           Expense Report
         </div>
       </div>
+
       <ul class="grid gap-2">
         <li>
           <a
@@ -36,6 +38,16 @@
           </a>
         </li>
       </ul>
+    </div>
+
+    <!-- Bottom section -->
+    <div class="p-6">
+      <button
+        class="w-full px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg shadow-md hover:opacity-90 transition cursor-pointer"
+        (click)="logout()"
+      >
+        Logout
+      </button>
     </div>
   </nav>
 
