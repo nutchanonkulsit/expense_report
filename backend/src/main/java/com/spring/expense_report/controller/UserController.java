@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.expense_report.dto.UserDTO;
+import com.spring.expense_report.dto.user.UserDTO;
 import com.spring.expense_report.entity.User;
 import com.spring.expense_report.service.UserService;
 

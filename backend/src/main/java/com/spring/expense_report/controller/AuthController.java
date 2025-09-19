@@ -116,7 +116,8 @@ public class AuthController {
                     "refreshToken", refreshToken,
                     "tokenType", "Bearer",
                     "email", user.getEmail(),
-                    "name", user.getName()));
+                    "name", user.getName(),
+                    "id", user.getId()));
 
         } catch (RuntimeException e) {
             // For things like "User not found"
@@ -154,16 +155,18 @@ public class AuthController {
     }
 
     // @PostMapping("/validate-token")
-    // public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String authHeader) {
-    //     String token = authHeader.startsWith("Bearer ") ? authHeader.substring(7) : authHeader;
+    // public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String
+    // authHeader) {
+    // String token = authHeader.startsWith("Bearer ") ? authHeader.substring(7) :
+    // authHeader;
 
-    //     boolean isValid = jwtUtil.validateToken(token);
+    // boolean isValid = jwtUtil.validateToken(token);
 
-    //     if (isValid) {
-    //         return ResponseEntity.ok().body("Token is valid");
-    //     } else {
-    //         return ResponseEntity.status(401).body("Invalid or expired token");
-    //     }
+    // if (isValid) {
+    // return ResponseEntity.ok().body("Token is valid");
+    // } else {
+    // return ResponseEntity.status(401).body("Invalid or expired token");
+    // }
     // }
 
     @PostMapping("/validate-token")
