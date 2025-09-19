@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.spring.expense_report.dto.RoleDTO;
-import com.spring.expense_report.dto.UserDTO;
+import com.spring.expense_report.dto.role.RoleDTO;
+import com.spring.expense_report.dto.user.UserDTO;
 import com.spring.expense_report.entity.Role;
 import com.spring.expense_report.entity.User;
 import com.spring.expense_report.repository.UserRepository;

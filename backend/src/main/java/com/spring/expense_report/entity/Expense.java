@@ -2,6 +2,9 @@ package com.spring.expense_report.entity;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,11 +33,17 @@ public class Expense {
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
+    @JsonProperty("user_id")
+    // @JsonIgnoreProperties({"user"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private User userId;
 
+    @JsonProperty("category_id")
+    // @JsonIgnoreProperties({"category"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private Category categoryId;
 }

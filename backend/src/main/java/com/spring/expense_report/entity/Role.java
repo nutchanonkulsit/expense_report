@@ -16,6 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "users"}) // ignore users เพื่อไม่ให้ infinite recursion
 public class Role {
 
     @Id
@@ -24,7 +25,7 @@ public class Role {
     private String name;
 
     @OneToMany(mappedBy = "role")
-    @JsonIgnoreProperties({ "role" })
+    // @JsonIgnoreProperties({ "role" })
     private Set<User> users = new HashSet<>();
 
     public Role() {

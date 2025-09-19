@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.spring.expense_report.dto.UserDTO;
+import com.spring.expense_report.dto.user.UserDTO;
 import com.spring.expense_report.entity.User;
 
 @Repository
@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u From User u")
     List<User> findAllUsers();
 
-    @Query("SELECT new com.spring.expense_report.dto.UserDTO(u.id, u.name, u.email, u.createdAt, r.id, r.name) "
+    @Query("SELECT new com.spring.expense_report.dto.user.UserDTO(u.id, u.name, u.email, u.createdAt, r.id, r.name) "
             + "FROM User u LEFT JOIN u.role r")
     List<UserDTO> findAllUsersDTO();
 

@@ -1,4 +1,4 @@
-package com.spring.expense_report.dto;
+package com.spring.expense_report.dto.role;
 
 import lombok.Data;
 import lombok.Getter;

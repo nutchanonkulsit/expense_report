@@ -20,6 +20,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "role"}) // ignore role เพื่อ prevent loop
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +48,7 @@ public class User {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
-    @JsonIgnoreProperties({"user"})
+    // @JsonIgnoreProperties({"user"})
     private Role role;
 
 }
